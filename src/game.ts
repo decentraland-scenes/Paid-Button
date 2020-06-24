@@ -24,3 +24,14 @@ const button = new PaidButton(
     sceneMessageBus.emit('openDoor', {})
   }
 )
+
+sceneMessageBus.on('openDoor', ({ sender }) => {
+  if (!door.open) {
+    door.toggle(true)
+  }
+})
+sceneMessageBus.on('closeDoor', ({ sender }) => {
+  if (door.open) {
+    door.toggle(false)
+  }
+})
