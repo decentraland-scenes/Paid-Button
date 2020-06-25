@@ -7,12 +7,14 @@ export let sceneMessageBus = new MessageBus()
 buildScene()
 
 const door = new Door(
+  new GLTFShape('models/Door_Fantasy.glb'),
   {
     position: new Vector3(9.275432586669922, 0, 9.929542541503906),
     rotation: new Quaternion(0, 0, 0, 1),
     scale: new Vector3(1, 1, 1),
   },
-  sceneMessageBus
+  'Open',
+  'Close'
 )
 
 const button = new PaidButton(
@@ -26,12 +28,12 @@ const button = new PaidButton(
 )
 
 sceneMessageBus.on('openDoor', ({ sender }) => {
-  if (!door.open) {
+  if (!door.isOpen) {
     door.toggle(true)
   }
 })
 sceneMessageBus.on('closeDoor', ({ sender }) => {
-  if (door.open) {
+  if (door.isOpen) {
     door.toggle(false)
   }
 })
