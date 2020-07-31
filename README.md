@@ -2,7 +2,7 @@
 
 A simple scene that uses the `decentraland-crypto-utils` library to make a MANA payment when a player clicks a button.
 
-<img src="screenshot/screenshot.png" width="250"> 
+<img src="screenshot/screenshot.png" width="350"> 
 
 This scene shows you:
 
