@@ -14,7 +14,7 @@
     "decentraland-ecs": "^6.4.11-20200825203944.commit-fcfbfbe"
   },
   "dependencies": {
-    "@dcl/crypto-utils": "^1.0.2",
+    "@dcl/crypto-utils": "^1.0.11",
     "decentraland-builder-scripts": "latest",
     "decentraland-crypto-utils": "git+https://github.com/HPrivakos/decentraland-crypto-utils.git",
     "decentraland-ecs-utils": "^1.1.4"

@@ -122,7 +122,6 @@ export class PaidButton extends Entity {
     })
   }
   public openUI(): void {
-    //donatedMoney = 0.058
     this.background.visible = true
     this.background.isPointerBlocker = true
   }
@@ -133,7 +132,8 @@ export class PaidButton extends Entity {
 
   public payFee(): void {
     log('PAYING FEE', this.paymentAmount)
-    mana.send(this.address, this.paymentAmount).then(() => {
+
+    mana.send(this.address, this.paymentAmount, true).then(() => {
       this.action()
       this.getComponent(AudioSource).playOnce()
       this.animation.stop()
