@@ -6,10 +6,10 @@ screenSpaceUI.visible = true
 const imageTexture = new Texture('images/Pay_UI.png')
 const scale = 0.55
 
-let paid_button_Model = new GLTFShape('models/PaidButton/MANA_Button.glb')
-let base_Model = new GLTFShape('models/PaidButton/Base.glb')
+const paid_button_Model = new GLTFShape('models/PaidButton/MANA_Button.glb')
+const base_Model = new GLTFShape('models/PaidButton/Base.glb')
 
-let clickSound = new AudioClip('sounds/click.mp3')
+const clickSound = new AudioClip('sounds/click.mp3')
 
 export class PaidButton extends Entity {
   animation: AnimationState
@@ -31,7 +31,7 @@ export class PaidButton extends Entity {
     this.addComponent(base_Model)
     this.addComponent(new Transform(pos))
 
-    let button = new Entity()
+    const button = new Entity()
     button.addComponent(paid_button_Model)
     button.setParent(this)
 
@@ -55,7 +55,7 @@ export class PaidButton extends Entity {
       )
     )
 
-    let background = new UIImage(screenSpaceUI, imageTexture)
+    const background = new UIImage(screenSpaceUI, imageTexture)
 
     background.name = 'background'
     background.width = 1024 * scale
@@ -133,11 +133,16 @@ export class PaidButton extends Entity {
   public payFee(): void {
     log('PAYING FEE', this.paymentAmount)
 
-    crypto.mana.send(this.address, this.paymentAmount, true).then(() => {
-      this.action()
-      this.getComponent(AudioSource).playOnce()
-      this.animation.stop()
-      this.animation.play()
-    })
+    crypto.mana.send(this.address, this.paymentAmount, true).then(
+      () => {
+        this.action()
+        this.getComponent(AudioSource).playOnce()
+        this.animation.stop()
+        this.animation.play()
+      },
+      (error) => {
+        log(error)
+      }
+    )
   }
 }
